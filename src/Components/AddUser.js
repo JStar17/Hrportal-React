@@ -135,9 +135,9 @@ export const AddUser = () => {
               <div className="col-sm-9">
                 <select className="form-control" name="role" onChange={(e)=>setRole(e.target.value)}>
                 <option value="">Select</option>
-                <option value="6217ca6875c14d52608b7675">HR Manager </option>
-                <option value="6217cae875c14d52608b7677">Employee</option>
-                  <option value="6217caf475c14d52608b7679">Admin</option>
+                <option value="6244241e848c7e84d4075cc4">HR Manager </option>
+                <option value="62442428848c7e84d4075cc6">Employee</option>
+                  {/* <option value="6217caf475c14d52608b7679">Admin</option> */}
                 </select>
               </div>
             </div>

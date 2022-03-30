@@ -99,7 +99,7 @@ export const UserDetail = () => {
                           {user.address}
                           </td>
                           <td>
-                          {user.roleName}
+                          {user.role.roleName}
                           </td>
                           <td>
                           {user.salary}
