@@ -1,8 +1,12 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+
+
 
 
 export const Login = () => {
@@ -38,13 +42,14 @@ export const Login = () => {
             }
             
             else {
-                console.log("here.....")
+              toast(res.data.msg)
+              console.log(res.data.msg)
                 setTimeout(() => {
 
                     navigate('/login')
                 }, 2000);
 
-                toast(res.data.msg)
+                
             }
 
         })
@@ -56,7 +61,7 @@ export const Login = () => {
   //   <div className="content-wrapper d-flex align-items-center auth px-15">
       <div className="row w-100 mx-0">
         <div className="col-lg-4 mx-auto">
-          <div className="auth-form-light text-left py-5 px-4 px-sm-5">
+          <div className="auth-form-light text-left py-5 px-4 px-sm-5"> 
             <div className="brand-logo">
               <img src="../../images/hr2.jfif" alt="logo" />
             </div>
@@ -91,21 +96,20 @@ export const Login = () => {
                     Keep me signed in
                   </label>
                 </div>
-                <a href="#" className="auth-link text-black">Forgot password?</a>
+                {/* <a href="#" className="auth-link text-black">Forgot password?</a> */}
+                <Link to="/forgotPassword" className="text-body">Forgot password?</Link>
               </div>
               
               <div className="text-center mt-4 font-weight-light">
-                Don't have an account? <a href="register.html" className="text-primary">Create</a>
+                Don't have an account? <Link to="/adduser" className="text-primary">Create</Link>
               </div>
             </form>
           </div>
         </div>
       </div>
-//     </div>
-//     {/* content-wrapper ends */}
-//   </div>
-//   {/* page-body-wrapper ends */}
-// </div>
+      
 
+ 
+   
   )
 }

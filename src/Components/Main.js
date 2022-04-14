@@ -3,14 +3,21 @@ import { Route, Routes } from 'react-router-dom'
 import { AddCelebrations } from './AddCelebrations'
 import { AddUser } from './AddUser'
 import { CelebrationDetail } from './CelebrationDetail'
+
+import { DeleteEmp } from './DeleteEmp'
+import { ForgetPassButton } from './ForgetPassButton'
+import { ForgetPassword } from './ForgetPassword'
 import { LeftSideBar } from './LeftSideBar'
 import { Login } from './Login'
 import { Logout } from './Logout'
 
 import { MainPanel } from './MainPanel'
+import { MyAccount } from './MyAccount'
 import { Setting } from './Setting'
 import { Sidebar } from './Sidebar'
 import { SignUp } from './SignUp'
+import { UpdateCele } from './UpdateCele'
+import { UpdateEmp } from './UpdateEmp'
 import { UserDetail } from './UserDetail'
 
 
@@ -19,7 +26,7 @@ export const Main = () => {
 <div className="container-fluid page-body-wrapper">
   {/* partial:partials/_settings-panel.html */}
   <Setting/>
-  <Sidebar/>
+  {/* <Sidebar/> */}
   <LeftSideBar/>
   {/* partial */}
   {/* partial:partials/_sidebar.html */}
@@ -33,7 +40,22 @@ export const Main = () => {
   {/* <AddCelebrations/> */}
   {/* <Login/> */}
   {/* <SignUp/> */}
-  <Logout/>
+  {/* <Logout/> */}
+  {/* <UpdateEmp/> */}
+  {/* <DeleteEmp/> */}
+{/* <MyAccount/> */}
+{/* <ForgetPassword/> */}
+{/* <ForgetPassButton/> */}
+
+
+
+
+
+  
+
+
+
+
 
 
  <Routes>
@@ -46,6 +68,13 @@ export const Main = () => {
      <Route path='/login' element={<Login/>}/>
      <Route path='/signup' element={<SignUp/>}/>
      <Route path='/logout' element={<Logout/>}/>
+     <Route path='/update/:userId' element={<UpdateEmp/>}/>
+     <Route path='/delete/:userId' element={<DeleteEmp/>}/>
+     <Route path='/up/:celebrationId' element={<UpdateCele/>}/>
+     <Route path='/myaccount' element={<MyAccount/>}/>
+     <Route path='/forgotPassword' element={<ForgetPassButton/>}></Route>
+        <Route path='/reset/:token' element={<ForgetPassword/>}></Route>
+     
      </Routes>
 </div>
 

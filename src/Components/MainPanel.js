@@ -8,8 +8,8 @@ export const MainPanel = () => {
         <div className="col-md-12 grid-margin">
           <div className="row">
             <div className="col-12 col-xl-8 mb-4 mb-xl-0">
-              <h3 className="font-weight-bold">Welcome Aamir</h3>
-              <h6 className="font-weight-normal mb-0">All systems are running smoothly! You have <span className="text-primary">3 unread alerts!</span></h6>
+              <h3 className="font-weight-bold">Welcome To HR Portal</h3>
+              <h6 className="font-weight-normal mb-0">All systems are running smoothly! You have <span className="text-primary"></span></h6>
             </div>
             <div className="col-12 col-xl-4">
               <div className="justify-content-end d-flex">

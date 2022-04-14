@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+
 
 export const AddCelebrations = () => {
   const [title, settitle] = useState('')
@@ -9,10 +12,20 @@ export const AddCelebrations = () => {
   const [time, settime] = useState('')
   const [venue, setvenue] = useState('')
  
+  var navigate = useNavigate()
+  var auth = localStorage.getItem('email')
+useEffect(() => {
+  {
+      if (!auth) {
+          navigate('/login')
+      }
+  }
+}, [])
 
 
   const submit =(e)=>{
     e.preventDefault()
+    alert("Data saved")
     console.log("ii",e.target.value)
   
     var data = {
@@ -25,6 +38,7 @@ export const AddCelebrations = () => {
     axios.post('http://localhost:2000/celebration',data).then(res=>{
         console.log(res.data)
     })
+   
 }
 return (
   <div className='content-wrapper'>

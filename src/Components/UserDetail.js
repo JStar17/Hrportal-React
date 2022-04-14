@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-
-
+import { Link, useNavigate } from 'react-router-dom'
 
 export const UserDetail = () => {
   const [userList, setuserList] = useState([])
@@ -15,6 +13,15 @@ export const UserDetail = () => {
       })
 
   }
+  var navigate = useNavigate()
+    var auth = localStorage.getItem('email')
+  useEffect(() => {
+    {
+        if (!auth) {
+            navigate('/login')
+        }
+    }
+}, [])
   useEffect(() => {
       getData()
   }, [])
@@ -66,6 +73,7 @@ export const UserDetail = () => {
                           <th>
                             Salary
                           </th>
+                         
                         </tr>
                       </thead>
                       <tbody>
@@ -98,6 +106,7 @@ export const UserDetail = () => {
                           <td>
                           {user.address}
                           </td>
+                         
                           <td>
                           {user.role.roleName}
                           </td>

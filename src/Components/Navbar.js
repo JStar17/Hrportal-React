@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { MyAccount } from './MyAccount';
 
 export const Navbar = () => {
+  var navigate = useNavigate();
   return (
   <nav className="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -25,7 +28,7 @@ export const Navbar = () => {
       </li>
     </ul>
     <ul className="navbar-nav navbar-nav-right">
-      <li className="nav-item dropdown">
+      {/* <li className="nav-item dropdown">
         <a className="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
           <i className="icon-bell mx-0" />
           <span className="count" />
@@ -72,27 +75,31 @@ export const Navbar = () => {
             </div>
           </a>
         </div>
-      </li>
+      </li> */}
       <li className="nav-item nav-profile dropdown">
         <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
           <img src="images/faces/face28.jpg" alt="profile" />
         </a>
         <div className="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
           <a className="dropdown-item">
-            <i className="ti-settings text-primary" />
-            Settings
-          </a>
-          <a className="dropdown-item">
+           
+               <button type="button" class="btn btn-social-icon-text btn-facebook" onClick = {()=>navigate('/myaccount')}>
+               <i class="mdi mdi-account-star">
+                </i>MyAccount</button> 
+           </a>
+           
+          
+          {/* <a className="dropdown-item">
             <i className="ti-power-off text-primary" />
             Logout
-          </a>
+          </a> */}
         </div>
       </li>
-      <li className="nav-item nav-settings d-none d-lg-flex">
+      {/* <li className="nav-item nav-settings d-none d-lg-flex">
         <a className="nav-link" href="#">
           <i className="icon-ellipsis" />
         </a>
-      </li>
+      </li> */}
     </ul>
     <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
       <span className="icon-menu" />

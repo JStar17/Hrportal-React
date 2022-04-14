@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
 
 
 export const CelebrationDetail = () => {
@@ -8,18 +9,40 @@ export const CelebrationDetail = () => {
     
 
   const getData = () => {
-      axios.get("http://localhost:2000/celebration").then(res => {
+      axios.get("http://localhost:2000/celebration/").then(res => {
           console.log(res.data.data)
           setcelebrationList(res.data.data)
       })
 
   }
+
   useEffect(() => {
       getData()
   }, [])
+  var navigate = useNavigate()
+  var auth = localStorage.getItem('email')
+useEffect(() => {
+  {
+      if (!auth) {
+          navigate('/login')
+      }
+  }
+}, [])
   
-  
-
+  const deleteCelebration = (celebrationId) =>{
+    axios.delete(`http://localhost:2000/celebration/${celebrationId}`).then(res=>{
+      console.log(res.data.data)
+        alert("Data deleted...")
+        //get ....
+    })
+  }
+  // const updateCelebration = (celebrationId) =>{
+  //   axios.put(`http://localhost:2000/celebration/${celebrationId}`).then(res=>{
+  //     console.log(res.data.data)
+        
+  //       //get ....
+  //   })
+  // }
 
   return (
     <div className='content-wrapper'>
@@ -77,8 +100,8 @@ export const CelebrationDetail = () => {
                           {celebration.venue}
                           </td>
                           <td>
-                                        <Link  to={`/delete/${celebration._id}`} className = "btn btn-danger">DELETE</Link>
-                                        <Link  to={`/update/${celebration._id}`} className  = "btn btn-primary">UPDATE</Link>
+                                        <Link  to={'/'} onClick={()=>{deleteCelebration(celebration._id)}} className = "btn btn-danger">DELETE</Link>
+                                        <Link  to={`/up/${celebration._id}`}  className  = "btn btn-primary">UPDATE</Link>
                                     </td>
                         </tr>
 
