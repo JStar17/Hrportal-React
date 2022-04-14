@@ -1,12 +1,14 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { AddCelebrations } from './AddCelebrations'
+import { AddLeave } from './AddLeave'
 import { AddUser } from './AddUser'
 import { CelebrationDetail } from './CelebrationDetail'
 
 import { DeleteEmp } from './DeleteEmp'
 import { ForgetPassButton } from './ForgetPassButton'
 import { ForgetPassword } from './ForgetPassword'
+import { LeaveDetails } from './LeaveDetails'
 import { LeftSideBar } from './LeftSideBar'
 import { Login } from './Login'
 import { Logout } from './Logout'
@@ -46,6 +48,9 @@ export const Main = () => {
 {/* <MyAccount/> */}
 {/* <ForgetPassword/> */}
 {/* <ForgetPassButton/> */}
+{/* <AddLeave/> */}
+{/* <LeaveDetails/> */}
+
 
 
 
@@ -73,7 +78,10 @@ export const Main = () => {
      <Route path='/up/:celebrationId' element={<UpdateCele/>}/>
      <Route path='/myaccount' element={<MyAccount/>}/>
      <Route path='/forgotPassword' element={<ForgetPassButton/>}></Route>
-        <Route path='/reset/:token' element={<ForgetPassword/>}></Route>
+     <Route path='/reset/:token' element={<ForgetPassword/>}></Route>
+     <Route path='/addleave' element={<AddLeave/>}/>
+     <Route path='/leavedetails' element={<LeaveDetails/>}/>
+
      
      </Routes>
 </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
 
+
 export const ForgetPassword = () => {
     
         const [password, setpassword] = useState('')
@@ -30,58 +31,52 @@ export const ForgetPassword = () => {
         }
     
   return (
-    <section className="vh-100" >
-    <div className="container h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-lg-12 col-xl-11">
-                <div className="card text-black">
-                    <div className="card-body p-md-5">
-                        <div className="row justify-content-center">
-                            <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-
-                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Reset Password</p>
-
-                                <form className="mx-1 mx-md-4" onSubmit={resetPassword}>
-                                    <div className="d-flex flex-row align-items-center mb-4">
-                                        <i className="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <input type="email" name="email" id="email" className="form-control" onChange={(e) => { setemail(e.target.value) }} />
-                                            <label className="form-label" htmlFor="email">Enter Your Email ID</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="d-flex flex-row align-items-center mb-4">
-                                        <i className="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <input type="password" name="password" id="password" className="form-control" onChange={(e) => { setpassword(e.target.value) }} />
-                                            <label className="form-label" htmlFor="password">Enter New Password</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" className="btn btn-primary btn-lg">Reset Password</button>
-                                    </div>
-                                    <ToastContainer
-                                        position="bottom-right"
-                                        autoClose={5000}
-                                        hideProgressBar
-                                        newestOnTop={false}
-                                        closeOnClick
-                                        rtl={false}
-                                        pauseOnFocusLoss
-                                        draggable
-                                        pauseOnHover
-                                    />
-
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
+    // <div className="container-scroller">
+    // <div className="container-fluid page-body-wrapper full-page-wrapper">
+    //   <div className="content-wrapper d-flex align-items-center auth px-15">
+        <div className="row w-100 mx-0">
+          <div className="col-lg-4 mx-auto">
+            <div className="auth-form-light text-left py-5 px-4 px-sm-5"> 
+              <div className="brand-logo">
+                <img src="../../images/hr2.jfif" alt="logo" />
+              </div>
+              <h4>Reset Password</h4>
+              {/* <h6 className="font-weight-light">Sign in to continue.</h6> */}
+              <form className="pt-3" onSubmit={resetPassword}>
+                <div className="form-group">
+                
+                  <input type="email" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email"  onChange={(e) => { setemail(e.target.value) }} />
                 </div>
+                <div className="form-group">
+                  <input type="password" className="form-control form-control-lg" id="exampleInputPassword1" placeholder="New Password"  onChange={(e) => { setpassword(e.target.value) }}/>
+                </div>
+                {/* <div className="mt-3">
+                  <a className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN IN</a>
+                </div> */}
+                <button type="submit" class="btn btn-primary">Reset Password</button>
+                <ToastContainer
+                      position="top-right"
+                      autoClose={1800}
+                      hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                  />
+               
+                
+              
+              </form>
             </div>
+          </div>
         </div>
-    </div>
-</section>
+        // </div>
+        // </div>
+        // </div>
+  
+   
+     
   )
 }

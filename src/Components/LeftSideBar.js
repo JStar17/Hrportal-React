@@ -34,13 +34,28 @@ export const LeftSideBar = () => {
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
               <i class="mdi mdi-calendar-multiple"></i>
               <i class="fa-solid fa-right-to-bracket"></i>
-              <span class="menu-title px-3">Celebration</span>
+              <span class="menu-title px-3">Celebrations</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <Link class="nav-link" to="celebrationdetail">Celebration details</Link></li>
-                <li class="nav-item"> <Link class="nav-link" to="addcelebration">Add Celebration</Link></li>
+                <li class="nav-item"> <Link class="nav-link" to="celebrationdetail">Celebrations Details</Link></li>
+                <li class="nav-item"> <Link class="nav-link" to="addcelebration">Add Celebrations</Link></li>
+              </ul>
+            </div>
+          </li>
+     
+      <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+              <i class="mdi mdi-contact-mail"></i>
+              <i class="fa-solid fa-right-to-bracket"></i>
+              <span class="menu-title px-3">Leave</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <Link class="nav-link" to="leavedetails">Leave Details</Link></li>
+                <li class="nav-item"> <Link class="nav-link" to="addleave">Add Leave</Link></li>
               </ul>
             </div>
           </li>

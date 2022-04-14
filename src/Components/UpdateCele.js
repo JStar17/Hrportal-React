@@ -63,31 +63,31 @@ const submit = (e) =>{
           <div className="form-group row">
             <label htmlFor="exampleInputUsername2" name="title" className="col-sm-2 col-form-label">Title</label>
             <div className="col-sm-9">
-              <input type="text" className="form-control" name="title" onChange={(e)=>settitle(e.target.value)} />
+              <input type="text" className="form-control" name="title"  defaultValue={celebration.title} onChange={(e)=>settitle(e.target.value)} />
             </div>
           </div>
           <div className="form-group row">
             <label htmlFor="exampleInputEmail2" name="description" className="col-sm-2 col-form-label">Description</label>
             <div className="col-sm-9">
-              <input type="text" className="form-control" name="description" onChange={(e)=>setdescription(e.target.value)} />
+              <input type="text" className="form-control" name="description" defaultValue={celebration.description}  onChange={(e)=>setdescription(e.target.value)} />
             </div>
           </div>
           <div className="form-group row">
             <label htmlFor="exampleInputMobile" name="date" className="col-sm-2 col-form-label">Date</label>
             <div className="col-sm-9">
-              <input type="date" className="form-control" name="date" onChange={(e)=>setdate(e.target.value)} placeholder="dd/mm/yy" />
+              <input type="date" className="form-control" name="date" defaultValue={celebration.date}  onChange={(e)=>setdate(e.target.value)} placeholder="dd/mm/yy" />
             </div>
           </div>
           <div className="form-group row">
             <label htmlFor="exampleInputPassword2" name="time" className="col-sm-2 col-form-label">Time</label>
             <div className="col-sm-9">
-              <input type="time" className="form-control" name="time" onChange={(e)=>settime(e.target.value)} placeholder="12:12:pm" />
+              <input type="time" className="form-control" name="time" defaultValue={celebration.time}  onChange={(e)=>settime(e.target.value)} placeholder="12:12:pm" />
             </div>
           </div>
           <div className="form-group row">
             <label htmlFor="exampleInputConfirmPassword2" name="venue" className="col-sm-2 col-form-label">Venue</label>
             <div className="col-sm-9">
-              <input type="text" className="form-control" name="venue" onChange={(e)=>setvenue(e.target.value)} />
+              <input type="text" className="form-control" name="venue" defaultValue={celebration.venue}  onChange={(e)=>setvenue(e.target.value)} />
             </div>
           </div>
           <button type="submit" className="button2">Submit</button>

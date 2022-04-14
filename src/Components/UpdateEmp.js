@@ -6,17 +6,18 @@ import { useNavigate, useParams } from 'react-router-dom'
 export const UpdateEmp = () => {
     const userId = useParams().userId
     const [user, setuser] = useState('')
-    const [FirstName, setFirstName] = useState('')
-  const [LastName, setLastName] = useState('')
-  const [UserName, setUserName] = useState('')
-  const [Email, setEmail] = useState('')
-  const [Password, setPassword] = useState('')
-  const [Gender, setGender] = useState('')
-  const [MobileNumber, setMobileNumber] = useState('')
-  const [dob, setdateofbirth] = useState('')
-  const [Role, setRole] = useState('')
-  const [Salary, setSalary] = useState('')
-  const [Address, setAddress] = useState('')
+    const [firstName, setfirstName] = useState('')
+  const [lastName, setlastName] = useState('')
+  const [userName, setuserName] = useState('')
+  const [email, setemail] = useState('')
+  const [password, setpassword] = useState('')
+  const [gender, setgender] = useState('')
+  const [mobileNo, setmobileNo] = useState('')
+  const [dateOfBirth, setdateOfBirth] = useState('')
+  const [role, setrole] = useState('')
+  const [salary, setsalary] = useState('')
+  const [address, setaddress] = useState('')
+  const [country, setcountry] = useState('')
    
     const getusers = () =>{
         axios.get(`http://localhost:2000/users/${userId}`).then(res=>{
@@ -38,17 +39,18 @@ export const UpdateEmp = () => {
         alert("data updated")
         var data = {
             userId:userId,
-            firstName:FirstName,
-            lastName:LastName,
-            userName:UserName,
-            gender:Gender,
-            mobileNo:MobileNumber,
-            dateOfBirth:dob,
-            address:Address,
-            role:Role,
-            salary:Salary,
-            password:Password,
-            email:Email,
+            firstName:firstName,
+            lastName:lastName,
+            userName:userName,
+            gender:gender,
+            mobileNo:mobileNo,
+            dateOfBirth:dateOfBirth,
+            address:address,
+            role:role,
+            salary:salary,
+            password:password,
+            email:email,
+            country:country,
             
         }
         axios.put(`http://localhost:2000/users/${userId}`,data).then(res=>{
@@ -135,7 +137,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">User Name</label>
               <div className="col-sm-9">
-                <input type="text" className="form-control" name="userName" defaultValue={user.userName} onChange={(e)=>setUserName(e.target.value)} />
+                <input type="text" className="form-control" name="userName" defaultValue={user.userName} onChange={(e)=>setuserName(e.target.value)} />
               </div>
             </div>
           </div>
@@ -143,7 +145,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Email</label>
               <div className="col-sm-9">
-                <input type="email" className="form-control" name="email" defaultValue={user.email} onChange={(e)=>setEmail(e.target.value)} />
+                <input type="email" className="form-control" name="email" defaultValue={user.email} onChange={(e)=>setemail(e.target.value)} />
               </div>
             </div>
           </div>
@@ -153,7 +155,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Mobile Number</label>
               <div className="col-sm-9">
-                <input type="text" className="form-control" name="mobileNo" defaultValue={user.mobileNo} onChange={(e)=>setMobileNumber(e.target.value)} />
+                <input type="text" className="form-control" name="mobileNo" defaultValue={user.mobileNo} onChange={(e)=>setmobileNo(e.target.value)} />
               </div>
             </div>
           </div>
@@ -161,7 +163,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Password</label>
               <div className="col-sm-9">
-                <input type="password" className="form-control" name="password" defaultValue={user.password} onChange={(e)=>setPassword(e.target.value)} />
+                <input type="password" className="form-control" name="password" defaultValue={user.password} onChange={(e)=>setpassword(e.target.value)} />
               </div>
             </div>
           </div>
@@ -171,7 +173,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">First Name</label>
               <div className="col-sm-9">
-                <input type="text" className="form-control" name="firstName" defaultValue={user.firstName} onChange={(e)=>setFirstName(e.target.value)} />
+                <input type="text" className="form-control" name="firstName" defaultValue={user.firstName} onChange={(e)=>setfirstName(e.target.value)} />
               </div>
             </div>
           </div>
@@ -179,7 +181,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Last Name</label>
               <div className="col-sm-9">
-                <input type="text" className="form-control" name="lastName" defaultValue={user.lastName} onChange={(e)=>setLastName(e.target.value)} />
+                <input type="text" className="form-control" name="lastName" defaultValue={user.lastName} onChange={(e)=>setlastName(e.target.value)} />
               </div>
             </div>
           </div>
@@ -189,7 +191,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label" name="gender">Gender</label>
               <div className="col-sm-9">
-                <select className="form-control" name="gender" defaultValue={user.gender} onChange={(e)=>setGender(e.target.value)}>
+                <select className="form-control" name="gender" defaultValue={user.gender} onChange={(e)=>setgender(e.target.value)}>
                 <option value="">Select</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -199,9 +201,9 @@ const uploadedImage = React.useRef(null);
           </div>
           <div className="col-md-6">
             <div className="form-group row">
-              <label className="col-sm-3 col-form-label"  defaultValue={user.dateOfBirth} name="dob">Date of Birth</label>
+              <label className="col-sm-3 col-form-label"  name="dateOfbirth">Date of Birth</label>
               <div className="col-sm-9">
-                <input type="date" className="form-control" name="dob" onChange={(e)=>setdateofbirth(e.target.value)} />
+                <input type="date" className="form-control"  defaultValue={user.dateOfBirth} name="dateofBirth" onChange={(e)=>setdateOfBirth(e.target.value)} />
               </div>
             </div>
           </div>
@@ -211,7 +213,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Role</label>
               <div className="col-sm-9">
-                <select className="form-control" name="role" defaultValue={user.roleName} onChange={(e)=>setRole(e.target.value)}>
+                <select className="form-control" name="role" defaultValue={user.role} onChange={(e)=>setrole(e.target.value)}>
                 <option value="">Select</option>
                 <option value="6244241e848c7e84d4075cc4">HR Manager </option>
                 <option value="62442428848c7e84d4075cc6">Employee</option>
@@ -224,7 +226,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Salary</label>
               <div className="col-sm-9">
-                <input type="text" className="form-control" defaultValue={user.salary} name="salary" onChange={(e)=>setSalary(e.target.value)} />
+                <input type="text" className="form-control" defaultValue={user.salary} name="salary" onChange={(e)=>setsalary(e.target.value)} />
               </div>
             </div>
           </div>
@@ -238,7 +240,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Address 1</label>
               <div className="col-sm-9">
-                <input type="text" className="form-control" name="address" defaultValue={user.address} onChange={(e)=>setAddress(e.target.value)}/>
+                <input type="text" className="form-control" name="address" defaultValue={user.address} onChange={(e)=>setaddress(e.target.value)}/>
               </div>
             </div>
           </div>
@@ -251,7 +253,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Country</label>
               <div className="col-sm-9">
-                <select className="form-control"  defaultValue={user.country}>
+                <select className="form-control"  defaultValue={user.country}  onChange={(e)=>setcountry(e.target.value)} >
                 <option>Select</option>
                   <option>India</option>
                   <option>Italy</option>
