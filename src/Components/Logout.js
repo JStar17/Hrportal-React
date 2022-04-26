@@ -15,7 +15,7 @@ export const Logout = () => {
                 
      <ToastContainer
                     position="top-right"
-                    autoClose={1800}
+                    autoClose={100}
                     hideProgressBar={false}
                     newestOnTop={false}
                     closeOnClick

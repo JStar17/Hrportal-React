@@ -83,7 +83,7 @@ export const Navbar = () => {
         <div className="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
           <a className="dropdown-item">
            
-               <button type="button" class="btn btn-social-icon-text btn-facebook" onClick = {()=>navigate('/myaccount')}>
+               <button type="button" class="btn btn-social-icon-text btn-facebook" onClick = {()=>navigate(`/myaccount`)}>
                <i class="mdi mdi-account-star">
                 </i>MyAccount</button> 
            </a>

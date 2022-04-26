@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { data } from 'jquery'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -6,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 export const LeaveDetails = () => {
     
   const [LeaveList, setLeaveList] = useState([])
+  const [oneLeave, setoneLeave] = useState([])
     
 
   const getData = () => {
@@ -27,13 +29,56 @@ useEffect(() => {
           navigate('/login')
       }
   }
-}, [])
-  
-  const deleteleave = (leaveId) =>{
-    axios.delete(`http://localhost:2000/leave/${leaveId}`).then(res=>{
-      console.log(res.data.data)
-        alert("Data deleted...")
+}, []) 
+
+  const updateLeaveStatusToReject = (leaveId) =>{
+    axios.get(`http://localhost:2000/leave/${leaveId}`,data).then(res=>{
+        setoneLeave(res.data.data)
+        console.log(res.data.data)
+        // alert("Data deleted...")
+
   })
+    var data = {
+      status:"Rejected",
+      user:oneLeave.user,
+      leaveType:oneLeave.leaveType,
+      notes:oneLeave.notes,
+      fromdate:oneLeave.fromdate,
+      todate:oneLeave.todate,
+      isApproved:oneLeave.isApproved,
+      reason:oneLeave.reason  ,
+      
+    }
+    axios.put(`http://localhost:2000/leave/${leaveId}`,data).then(res=>{
+      console.log(res.data.data)
+        
+  })
+}
+
+const updateLeaveStatusToAccept = (leaveId) =>{
+  axios.get(`http://localhost:2000/leave/${leaveId}`,data).then(res=>{
+      setoneLeave(res.data.data)
+      console.log(res.data.data)
+      // alert("Data deleted...")
+
+})
+  var data = {
+    status:"Approved",
+    user:oneLeave.user,
+    leaveType:oneLeave.leaveType,
+    notes:oneLeave.notes,
+    fromdate:oneLeave.fromdate,
+    todate:oneLeave.todate,
+    isApproved:oneLeave.isApproved,
+    reason:oneLeave.reason  ,
+    
+  }
+  axios.put(`http://localhost:2000/leave/${leaveId}`,data).then(res=>{
+    console.log(res.data.data)
+})
+  setTimeout(() => {
+    navigate('/leavedetails')
+  }, 1000);
 }
   return (
     <div className='content-wrapper'>
@@ -64,11 +109,12 @@ useEffect(() => {
               <th>
                 To Date
               </th>
-              <th>
-               Approved
-              </th>
+              
               <th>
                Reason
+              </th>
+              <th>
+                Status
               </th>
             </tr>
           </thead>
@@ -90,15 +136,17 @@ useEffect(() => {
                           <td>
                           {leave.todate}
                           </td>
-                          <td>
-                          {leave.isApproved}
-                          </td>
+                         
                           <td>
                           {leave.reason}
                           </td>
+
                           <td>
-                                        <Link  to={'/'} onClick={()=>{deleteleave(leave._id)}} className = "btn btn-danger">DELETE</Link>
-                                        <Link  to={`/up/${leave._id}`}  className  = "btn btn-primary">UPDATE</Link>
+                          {leave.status=="pending"?<>
+                          <button onClick={()=>{updateLeaveStatusToReject(leave._id)}} className = "btn btn-danger">Reject</button>
+                          <button onClick={()=>{updateLeaveStatusToAccept(leave._id)}} className  = "btn btn-primary">Approve</button>
+                          </>:leave.status}
+                                        
                                     </td>
                         </tr>
 

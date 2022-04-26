@@ -2,12 +2,16 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { AddCelebrations } from './AddCelebrations'
 import { AddLeave } from './AddLeave'
+import { AddRole } from './AddRole'
 import { AddUser } from './AddUser'
 import { CelebrationDetail } from './CelebrationDetail'
 
 import { DeleteEmp } from './DeleteEmp'
+import { EmpSalary } from './EmpSalary'
+import { Footer } from './Footer'
 import { ForgetPassButton } from './ForgetPassButton'
 import { ForgetPassword } from './ForgetPassword'
+import { GenerateSalary } from './GenerateSalary'
 import { LeaveDetails } from './LeaveDetails'
 import { LeftSideBar } from './LeftSideBar'
 import { Login } from './Login'
@@ -25,10 +29,11 @@ import { UserDetail } from './UserDetail'
 
 export const Main = () => {
   return (
+    <>
 <div className="container-fluid page-body-wrapper">
   {/* partial:partials/_settings-panel.html */}
   <Setting/>
-  {/* <Sidebar/> */}
+  
   <LeftSideBar/>
   {/* partial */}
   {/* partial:partials/_sidebar.html */}
@@ -50,6 +55,10 @@ export const Main = () => {
 {/* <ForgetPassButton/> */}
 {/* <AddLeave/> */}
 {/* <LeaveDetails/> */}
+{/* <EmpSalary/> */}
+{/* <GenerateSalary/> */}
+
+
 
 
 
@@ -81,10 +90,17 @@ export const Main = () => {
      <Route path='/reset/:token' element={<ForgetPassword/>}></Route>
      <Route path='/addleave' element={<AddLeave/>}/>
      <Route path='/leavedetails' element={<LeaveDetails/>}/>
+     <Route path='/addrole' element={<AddRole/>}/>
+     <Route path='/empsalary' element={<EmpSalary/>}/>
+     <Route path='/generateSalary/:userId' element={<GenerateSalary/>}/>
+
 
      
      </Routes>
+     
 </div>
+
+</>
 
   )
 }

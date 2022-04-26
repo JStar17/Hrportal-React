@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { GenerateSalary } from './GenerateSalary'
 
-export const UserDetail = () => {
+
+export const EmpSalary = () => {
+ 
+    
   const [userList, setuserList] = useState([])
     
 
@@ -55,18 +59,7 @@ export const UserDetail = () => {
                           <th>
                             Email
                           </th>
-                          <th>
-                            Gender
-                          </th>
-                          <th>
-                            Mobile Number
-                          </th>
-                          <th>
-                            D.O.B
-                          </th>
-                          <th>
-                            Address
-                          </th>
+                         
                           <th>
                             Role
                           </th>
@@ -95,28 +88,14 @@ export const UserDetail = () => {
                           {user.email}
                           </td>
                           <td>
-                          {user.gender}
-                          </td>
-                          <td>
-                          {user.mobileNo}
-                          </td>
-                          <td>
-                          {user.dateOfBirth}
-                          </td>
-                          <td>
-                          {user.address}
-                          </td>
-                         
-                          <td>
                           {user.role.roleName}
                           </td>
                           <td>
                           {user.salary}
                           </td>
                           <td>
-                                        <Link  to={`/delete/${user._id}`} className = "btn btn-danger">DELETE</Link>
-                                        <Link  to={`/update/${user._id}`} className  = "btn btn-primary">UPDATE</Link>
-                                    </td>
+                              <Link to={`/generatesalary/${user._id}`} className  = "btn btn-primary">Genrate Slip</Link>
+                         </td>
                         </tr>
 
                         )
@@ -138,7 +117,12 @@ export const UserDetail = () => {
 
       </div>
       </div>
-     
+      <footer className="footer">
+      <div className="d-sm-flex justify-content-center justify-content-sm-between">
+        <span className="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. </span>
+        
+      </div>
+    </footer>
        </div>
     
   )

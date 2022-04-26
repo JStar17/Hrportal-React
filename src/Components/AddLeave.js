@@ -28,12 +28,14 @@ export const AddLeave = () => {
       console.log("ii",e.target.value)
     
       var data = {
+        user:localStorage.getItem('userId'),
         leaveType:leaveType,
         notes:notes,
         fromdate:fromdate,
         todate:todate,
         isApproved:isApproved,
-        reason:reason  
+        reason:reason  ,
+        status:"pending"
       }
       axios.post('http://localhost:2000/leave',data).then(res=>{
           console.log(res.data)
@@ -77,19 +79,18 @@ export const AddLeave = () => {
               <input type="date" className="form-control" name="dates" onChange={(e)=>settodate(e.target.value)} placeholder="dd/mm/yy" />
             </div>
           </div>
-          <div className="form-group row">
-            <label htmlFor="exampleInputPassword2" name="isApproved" className="col-sm-2 col-form-label">Approved</label>
-            <div className="col-sm-9">
-              <input type="number" className="form-control" name="isApproved" onChange={(e)=>setisApproved(e.target.value)}  />
-            </div>
-          </div>
+          
           <div className="form-group row">
             <label htmlFor="exampleInputConfirmPassword2" name="reason" className="col-sm-2 col-form-label">Reason</label>
             <div className="col-sm-9">
               <input type="text" className="form-control" name="reason" onChange={(e)=>setreason(e.target.value)} />
             </div>
           </div>
-          <button type="submit" className="button2">Submit</button>
+          {/* <button type="submit" className="button2">Submit</button> */}
+          <button type="submit" class="btn btn-primary btn-icon-text">
+                          
+                          Submit
+                        </button>
            </form>
       </div>
     </div>

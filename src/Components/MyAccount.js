@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 
 export const MyAccount = () => {
-    const userId = useParams().userId
+    const userId = localStorage.getItem('userId')
     const [user, setuser] = useState('')
     const [firstName, setfirstName] = useState('')
     const [lastName, setlastName] = useState('')
@@ -32,7 +32,8 @@ export const MyAccount = () => {
       getusers()
     }, [])
     
-    
+    console.log("user " , user);
+    console.log("userId" ,userId)
    
     const submit = (e) =>{
         e.preventDefault();

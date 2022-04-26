@@ -29,10 +29,10 @@ export const Login = () => {
 
 
             if (res.data.status = 200 ) {
-
-                localStorage.setItem('email', res.data.data.email)
-                localStorage.setItem('firstName', res.data.data.firstName)
-                localStorage.setItem('role', res.data.data.role.roleName)
+                localStorage.setItem('userId',res?.data.data._id)
+                localStorage.setItem('email', res?.data.data.email)
+                localStorage.setItem('firstName', res?.data.data.firstName)
+                localStorage.setItem('role', res?.data.data.role.roleName)
                 toast(res.data.msg)
                 
                 setTimeout(() => {

@@ -17,6 +17,7 @@ export const AddUser = () => {
   const [Salary, setSalary] = useState('')
   const [Address, setAddress] = useState('')
   const [Country, setCountry] = useState('')
+  const [roleList, setroleList] = useState([])
 
 
   const submit =(e)=>{
@@ -36,7 +37,8 @@ export const AddUser = () => {
         role:Role,
         salary:Salary,
         country:Country,
-        password:Password,        
+        password:Password,
+                
     }
     axios.post('http://localhost:2000/users',data).then(res=>{
         console.log(res.data)
@@ -44,13 +46,13 @@ export const AddUser = () => {
 }
       var navigate = useNavigate()
     var auth = localStorage.getItem('email')
-  useEffect(() => {
-    {
-        if (!auth) {
-            navigate('/login')
-        }
-    }
-}, [])
+//   useEffect(() => {
+//     {
+//         if (!auth) {
+//             navigate('/login')
+//         }
+//     }
+// }, [])
 const uploadedImage = React.useRef(null);
     const imageUploader = React.useRef(null);
   
@@ -66,6 +68,17 @@ const uploadedImage = React.useRef(null);
         reader.readAsDataURL(file);
       }
     };
+    const getroles = () => {
+      axios.get('http://localhost:2000/roles').then(res=>{
+          console.log(res.data.data)
+          setroleList(res.data.data)
+      }).catch(err=>{
+          console.log(err)
+      })
+  }
+  useEffect(() => {
+    getroles()
+  },[])
 
   return (
     <div className='content-wrapper'>
@@ -196,11 +209,14 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Role</label>
               <div className="col-sm-9">
-                <select className="form-control" name="role" onChange={(e)=>setRole(e.target.value)}>
-                <option value="">Select</option>
-                <option value="6244241e848c7e84d4075cc4">HR Manager </option>
-                <option value="62442428848c7e84d4075cc6">Employee</option>
-                  {/* <option value="6217caf475c14d52608b7679">Admin</option> */}
+                <select className="form-select" name="role" onChange={(e)=>setRole(e.target.value)}>
+                   { 
+                     roleList.map((role)=>{
+                         return (
+                         <option value={role._id} key={role._id}>{role.roleName}</option>
+                           )
+                      })
+                   }   
                 </select>
               </div>
             </div>
@@ -235,7 +251,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Country</label>
               <div className="col-sm-9">
-                <select className="form-control" name="country"  onChange={(e)=>setCountry(e.target.value)}>
+                <select className="form-select" name="country"  onChange={(e)=>setCountry(e.target.value)}>
                 <option value="">Select</option>
                   <option value="India">India</option>
                   <option value="Italy" >Italy</option>
@@ -247,7 +263,11 @@ const uploadedImage = React.useRef(null);
           </div>
         </div>
         <div>
-  <button className='button2'  type='submit'>Submit</button>
+  {/* <button className='button2'  type='submit'>Submit</button> */}
+    <button type="submit" class="btn btn-primary btn-icon-text">
+                          
+                          Submit
+                        </button>
 </div>
       </form>
     </div>

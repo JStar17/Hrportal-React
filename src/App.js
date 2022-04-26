@@ -6,11 +6,12 @@ import { Route, Routes } from 'react-router-dom';
 // import { UserDetail } from './Components/UserDetail';
 import { Main } from './Components/Main';
 import { Login } from './Components/Login';
+import { Footer } from './Components/Footer';
 
 
 const App=()=> {
   return (
-    <div>
+    <>
      <Navbar/>
      <Main/>
      
@@ -19,8 +20,9 @@ const App=()=> {
      <Routes>
      {/* <Route path='/users' element={<UserDetail/>}/> */}
      </Routes>
+     <Footer/>
 
-   </div>
+   </>
   );
 }
 

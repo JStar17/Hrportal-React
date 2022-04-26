@@ -30591,33 +30591,10 @@ div.tagsinput span.tag a {
     display: none;
   }
 }
-/* .button2 {
-  background-color: white;
-  color:#0b7dfd;
-  border: 2px solid #a5a4f0;
-  font-size: 25px;
-  float: left;
-} */
-.button2 {
-  
-  background-color: #759bff;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 17px;
-  margin: 4px 2px;
-  opacity: 0.4;
-  transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 8px;
+
+/*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
+.center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.button2:hover {opacity: 1}
-
-/*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */

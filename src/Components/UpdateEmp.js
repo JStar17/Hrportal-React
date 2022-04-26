@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 export const UpdateEmp = () => {
     const userId = useParams().userId
     const [user, setuser] = useState('')
-    const [firstName, setfirstName] = useState('')
+    const [firstName, setfirstName] = useState(user.firstName)
   const [lastName, setlastName] = useState('')
   const [userName, setuserName] = useState('')
   const [email, setemail] = useState('')
@@ -31,7 +31,7 @@ export const UpdateEmp = () => {
     useEffect(() => {
       getusers()
     }, [])
-    
+
     
    
     const submit = (e) =>{
@@ -42,7 +42,7 @@ export const UpdateEmp = () => {
             firstName:firstName,
             lastName:lastName,
             userName:userName,
-            gender:gender,
+            gender:  gender,
             mobileNo:mobileNo,
             dateOfBirth:dateOfBirth,
             address:address,
@@ -69,6 +69,8 @@ export const UpdateEmp = () => {
         }
     }
 }, [])
+
+console.log("User" , user)
 const uploadedImage = React.useRef(null);
     const imageUploader = React.useRef(null);
   
@@ -173,7 +175,7 @@ const uploadedImage = React.useRef(null);
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">First Name</label>
               <div className="col-sm-9">
-                <input type="text" className="form-control" name="firstName" defaultValue={user.firstName} onChange={(e)=>setfirstName(e.target.value)} />
+                <input type="text" className="form-control" name="firstName"  defaultValue={user.firstName} onChange={(e)=>setfirstName(e.target.value)} />
               </div>
             </div>
           </div>
