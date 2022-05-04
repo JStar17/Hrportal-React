@@ -72,7 +72,7 @@ export const EmpSalary = () => {
                       <tbody>
                       {userList.map((user,index)=>{
                         return(
-                          <tr class="table-info">
+                          <tr class="">
                           <td scope="row">{index+1}
                           </td>
                           <td>

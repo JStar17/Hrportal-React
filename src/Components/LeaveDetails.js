@@ -121,7 +121,7 @@ const updateLeaveStatusToAccept = (leaveId) =>{
           <tbody>
           {LeaveList.map((leave,index)=>{
                         return(
-                          <tr class="table-info">
+                          <tr class="">
                           <td scope="row">{index+1}
                           </td>
                           <td>

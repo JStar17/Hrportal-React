@@ -81,18 +81,18 @@ export const AddUser = () => {
   }, []);
 
   return (
+    <div class="main-panel">   
     <div className="content-wrapper">
       <div className="row">
         <div class="col-lg-12 stretch-card">
           <div className="col-12 grid-margin">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Add User Details</h4>
+                <h4 className="card-title">Add Employee Details</h4>
                 <form className="form-sample" onSubmit={submit}>
-                  <p className="card-description">Personal info</p>
-                 
+                  <p className="card-description">Employee Details</p>
+
                   <div
-                 
                     style={{
                       display: "flex",
                       flexDirection: "column",
@@ -110,7 +110,6 @@ export const AddUser = () => {
                       }}
                     />
                     <div
-                    
                       style={{
                         height: "120px",
                         width: "120px",
@@ -127,11 +126,9 @@ export const AddUser = () => {
                         }}
                       />
                     </div>
-                   
                   </div>
-                  <div>
-                   Picture
-                   </div>
+                  <div>Click to upload Image</div>
+                  <br></br>
                   <div className="row">
                     <div className="col-md-6  ">
                       <div className="form-group row">
@@ -148,7 +145,7 @@ export const AddUser = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="col-md-6">
                       <div className="form-group row">
                         <label className="col-sm-3 col-form-label">Email</label>
@@ -238,7 +235,7 @@ export const AddUser = () => {
                         </label>
                         <div className="col-sm-9">
                           <select
-                            className="form-control"
+                            className="form-select"
                             name="gender"
                             onChange={(e) => setGender(e.target.value)}
                           >
@@ -271,6 +268,7 @@ export const AddUser = () => {
                         <label className="col-sm-3 col-form-label">Role</label>
                         <div className="col-sm-9">
                           <select
+                          
                             className="form-select"
                             name="role"
                             onChange={(e) => setRole(e.target.value)}
@@ -279,6 +277,7 @@ export const AddUser = () => {
                               return (
                                 <option value={role._id} key={role._id}>
                                   {role.roleName}
+                                  
                                 </option>
                               );
                             })}
@@ -344,6 +343,74 @@ export const AddUser = () => {
                       </div>
                     </div>
                   </div>
+                  <br></br>
+
+      <div className="row">
+      <div className="col-md-6 grid-margin stretch-card">
+        <div className="card">
+          <div className="card-body">
+            <h4 className="card-title"> Bank Details</h4>
+            <p className="card-description">
+           
+            </p>
+            <form className="forms-sample">
+              <div className="form-group">
+                <label htmlFor="exampleInputUsername1">Bank Name</label>
+                <input type="text" className="form-control" id="exampleInputUsername1" placeholder="Username" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Bank Account Number</label>
+                <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Email" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">ISFC Code</label>
+                <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleInputConfirmPassword1">PAN Number</label>
+                <input type="text" className="form-control" id="exampleInputConfirmPassword1" placeholder="Password" />
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div> 
+      
+  
+
+   
+      <div className="col-md-6 grid-margin stretch-card">
+        <div className="card">
+          <div className="card-body">
+            <h4 className="card-title">Emergency Contact</h4>
+            <p className="card-description">
+           
+            </p>
+            <form className="forms-sample">
+              <div className="form-group">
+                <label htmlFor="exampleInputUsername1">Person's Name</label>
+                <input type="text" className="form-control" id="exampleInputUsername1" placeholder="Username" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Relationship</label>
+                <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Email" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">Contact Number</label>
+                <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+              </div>
+           
+
+            </form>
+          </div>
+        </div>
+      </div> 
+      </div>
+  
+  
+    
+   
+
                   <div>
                     <button type="submit" class="btn btn-primary btn-icon-text">
                       Submit
@@ -355,6 +422,7 @@ export const AddUser = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

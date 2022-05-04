@@ -8,6 +8,7 @@ import { CelebrationDetail } from './CelebrationDetail'
 
 import { DeleteEmp } from './DeleteEmp'
 import { EmpDetails } from './EmpDetails'
+import { EmploDetails } from './EmploDetails'
 import { EmpSalary } from './EmpSalary'
 
 import { Footer } from './Footer'
@@ -64,6 +65,7 @@ export const Main = () => {
 {/* <EmpDetails/> */}
 {/* <Login1/> */}
 {/* <PasswordReset/> */}
+{/* <EmploDetails/> */}
 
 
 
@@ -89,7 +91,8 @@ export const Main = () => {
    
      <Route path='/' element={<MainPanel/>}/>
      <Route path='/adduser' element={<AddUser/>}/>
-     <Route path='/users' element={<EmpDetails/>}/>
+     <Route path='/empdetails/:userId' element={<EmpDetails/>}/>
+     <Route path='/users' element={<EmploDetails/>}/>
      <Route path='/celebrationdetail' element={<CelebrationDetail/>}/>
      <Route path='/addcelebration' element={<AddCelebrations/>}/>
      

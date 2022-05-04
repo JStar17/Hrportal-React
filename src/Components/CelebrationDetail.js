@@ -81,7 +81,7 @@ useEffect(() => {
           <tbody>
           {celebrationList.map((celebration,index)=>{
                         return(
-                          <tr class="table-info">
+                          <tr class="">
                           <td scope="row">{index+1}
                           </td>
                           <td>

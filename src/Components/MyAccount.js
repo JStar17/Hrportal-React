@@ -132,7 +132,9 @@ const uploadedImage = React.useRef(null);
       />
     </div>
     Click to upload Image
+
   </div>
+  <br></br>
         <div className="row">
           <div className="col-md-6">
             <div className="form-group row">
