@@ -28,8 +28,8 @@ export const LeftSideBar = () => {
         <div className="collapse" id="collapseExample">
           <ul className="nav flex-column sub-menu" >
             <li  className="nav-item"> <Link className="nav-link" to="users">Employee Details</Link></li>
-            <li className="nav-item"> <Link className="nav-link" to="adduser">Add Employee</Link></li>
-            <li className="nav-item"> <Link className="nav-link" to="addrole">Add Role</Link></li>
+            {localStorage.getItem('role')=="HR "? <li className="nav-item"> <Link className="nav-link" to="adduser">Add Employee</Link></li>:""}
+            {localStorage.getItem('role')=="HR "? <li className="nav-item"> <Link className="nav-link" to="addrole">Add Role</Link></li>:""}
             {/* <li className="nav-item"> <a className="nav-link" href="pages/ui-features/typography.html">Typography</a></li> */}
           </ul>
         </div>
@@ -59,7 +59,7 @@ export const LeftSideBar = () => {
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <Link class="nav-link" to="celebrationdetail">Celebrations Details</Link></li>
-                <li class="nav-item"> <Link class="nav-link" to="addcelebration">Add Celebrations</Link></li>
+                {localStorage.getItem('role')=="HR "? <li class="nav-item"> <Link class="nav-link" to="addcelebration">Add Celebrations</Link></li>:""}
               </ul>
             </div>
           </li>
@@ -73,13 +73,15 @@ export const LeftSideBar = () => {
             </a>
             <div class="collapse" id="charts">
               <ul class="nav flex-column sub-menu">
-              {localStorage.getItem('role')=="HR "?<li class="nav-item"> <Link class="nav-link" to="leavedetails">Leave Details</Link></li>:""}
+              {localStorage.getItem('role')=="HR "?<li class="nav-item"> <Link class="nav-link" to="leavedetails">Leave Applications</Link></li>:""}
                 <li class="nav-item"> <Link class="nav-link" to="addleave">Apply for Leave</Link></li>
+                <li class="nav-item"> <Link class="nav-link" to="leavestatus">Leave Status</Link></li>
+
               </ul>
             </div>
           </li>
     
-      <li className="nav-item">
+          {localStorage.getItem('role')==null?<li className="nav-item">
         <Link className="nav-link" to="/login">
           <i className=  "mdi mdi-login-variant"/>
           <i class="fa-solid fa-right-to-bracket"></i>
@@ -88,7 +90,7 @@ export const LeftSideBar = () => {
           <i className="menu-arrow" />
         </Link>
         <i className="menu-arrow" />
-      </li>
+      </li>:""}
       {/* <li className="nav-item">
         <Link className="nav-link" to="/signup">
           <i className="mdi mdi-account-plus" />

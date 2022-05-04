@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom'
 
 
 export const GenerateSalary = () => {
-  const [User, setUser] = useState([])
+  const [user, setuser] = useState([])
+  const [role, setrole] = useState([])
 var userId = useParams().userId
 
 
@@ -12,7 +13,7 @@ const getData = () => {
   axios.get(`http://localhost:2000/users/${userId}`).then(res=>{
 
       console.log(res.data.data)
-      setUser(res.data.data)
+      setuser(res.data.data)
   })
 
 }
@@ -43,14 +44,14 @@ useEffect(() => {
         <div className="col-md-10">
           <div className="row">
             <div className="col-md-6">
-              <div> <span className="fw-bolder">EMP Code</span> <small className="ms-3">{User._id}</small> </div>
+              <div> <span className="fw-bolder">EMP Code</span> <small className="ms-3">{user._id}</small> </div>
             </div>
           
           </div>
           <div className="row">
 
             <div className="col-md-6">
-              <div> <span className="fw-bolder">EMP Name</span> <small className="ms-3">{User.firstName}</small> </div>
+              <div> <span className="fw-bolder">EMP Name</span> <small className="ms-3">{user.firstName}</small> </div>
             </div>
           </div>
           <div className="row">
@@ -67,7 +68,7 @@ useEffect(() => {
           </div>
           <div className="row">
             <div className="col-md-6">
-              <div> <span className="fw-bolder">Designation</span> <small className="ms-3">{User.role.roleName}</small> </div>
+              <div> <span className="fw-bolder">Designation</span> <small className="ms-3">{user.role?.roleName}</small> </div>
             </div>
            
           </div>

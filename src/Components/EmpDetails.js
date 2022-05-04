@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 
-export const UserDetail = () => {
+export const EmpDetails = () => {
   const [userList, setuserList] = useState([])
     
 

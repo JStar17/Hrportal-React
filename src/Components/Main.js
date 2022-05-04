@@ -7,24 +7,27 @@ import { AddUser } from './AddUser'
 import { CelebrationDetail } from './CelebrationDetail'
 
 import { DeleteEmp } from './DeleteEmp'
+import { EmpDetails } from './EmpDetails'
 import { EmpSalary } from './EmpSalary'
+
 import { Footer } from './Footer'
-import { ForgetPassButton } from './ForgetPassButton'
-import { ForgetPassword } from './ForgetPassword'
 import { GenerateSalary } from './GenerateSalary'
 import { LeaveDetails } from './LeaveDetails'
+import { LeaveStatus } from './LeaveStatus'
 import { LeftSideBar } from './LeftSideBar'
-import { Login } from './Login'
+
+import { Login1 } from './Login'
 import { Logout } from './Logout'
 
 import { MainPanel } from './MainPanel'
 import { MyAccount } from './MyAccount'
+
 import { Setting } from './Setting'
 import { Sidebar } from './Sidebar'
 import { SignUp } from './SignUp'
 import { UpdateCele } from './UpdateCele'
 import { UpdateEmp } from './UpdateEmp'
-import { UserDetail } from './UserDetail'
+
 
 
 export const Main = () => {
@@ -57,6 +60,16 @@ export const Main = () => {
 {/* <LeaveDetails/> */}
 {/* <EmpSalary/> */}
 {/* <GenerateSalary/> */}
+{/* <LeaveStatus/> */}
+{/* <EmpDetails/> */}
+{/* <Login1/> */}
+{/* <PasswordReset/> */}
+
+
+
+
+
+
 
 
 
@@ -76,25 +89,24 @@ export const Main = () => {
    
      <Route path='/' element={<MainPanel/>}/>
      <Route path='/adduser' element={<AddUser/>}/>
-     <Route path='/users' element={<UserDetail/>}/>
+     <Route path='/users' element={<EmpDetails/>}/>
      <Route path='/celebrationdetail' element={<CelebrationDetail/>}/>
      <Route path='/addcelebration' element={<AddCelebrations/>}/>
-     <Route path='/login' element={<Login/>}/>
+     
+     <Route path='/login' element={<Login1/>}/>
      <Route path='/signup' element={<SignUp/>}/>
      <Route path='/logout' element={<Logout/>}/>
      <Route path='/update/:userId' element={<UpdateEmp/>}/>
      <Route path='/delete/:userId' element={<DeleteEmp/>}/>
      <Route path='/up/:celebrationId' element={<UpdateCele/>}/>
      <Route path='/myaccount' element={<MyAccount/>}/>
-     <Route path='/forgotPassword' element={<ForgetPassButton/>}></Route>
-     <Route path='/reset/:token' element={<ForgetPassword/>}></Route>
      <Route path='/addleave' element={<AddLeave/>}/>
      <Route path='/leavedetails' element={<LeaveDetails/>}/>
      <Route path='/addrole' element={<AddRole/>}/>
      <Route path='/empsalary' element={<EmpSalary/>}/>
      <Route path='/generateSalary/:userId' element={<GenerateSalary/>}/>
-
-
+     <Route path='/leavestatus' element={<LeaveStatus/>}/>
+  
      
      </Routes>
      

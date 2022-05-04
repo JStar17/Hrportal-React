@@ -1,65 +1,59 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
+export const Login1 = () => {
+	const [email, setemail] = useState('')
+	const [password, setpassword] = useState('')
+	var navigate = useNavigate();
 
-
-
-
-export const Login = () => {
-
-    const [email, setemail] = useState('')
-    const [password, setpassword] = useState('')
-    var navigate = useNavigate();
-
-    const login = async (e) => {
-
-        e.preventDefault();
-        //api -- > response --> localstorage..
-        
-            var data = {
-                email: email,
-                password: password
-            }
-        
-        await axios.post('http://localhost:2000/login', data).then((res) => {
-
-
-            if (res.data.status = 200 ) {
-                localStorage.setItem('userId',res?.data.data._id)
-                localStorage.setItem('email', res?.data.data.email)
-                localStorage.setItem('firstName', res?.data.data.firstName)
-                localStorage.setItem('role', res?.data.data.role.roleName)
-                toast(res.data.msg)
-                
-                setTimeout(() => {
-                    navigate('/')
-                }, 2000);
-
-            }
-            
-            else {
-              toast(res.data.msg)
-              console.log(res.data.msg)
-                setTimeout(() => {
-
-                    navigate('/login')
-                }, 2000);
-
-                
-            }
-
-        })
-
-    }
-  return (
-  //   <div className="container-scroller">
-  // <div className="container-fluid page-body-wrapper full-page-wrapper">
-  //   <div className="content-wrapper d-flex align-items-center auth px-15">
-      <div className="row w-100 mx-0">
+	const login = async (e) => {
+		e.preventDefault();
+		var data = {
+			email: email,
+			password: password
+		}
+		await axios.post('http://localhost:2000/login', data).then(res => {
+			console.log(res.data)
+			if (res.data.status == 200) {
+				localStorage.setItem('userId',res.data.data._id)
+				localStorage.setItem('email',res.data.data.email);
+				localStorage.setItem('role',res.data.data.role.roleName);
+				localStorage.setItem('firstName',res.data.data.firstName)
+				localStorage.setItem('lastName',res.data.data.lastName)
+				localStorage.setItem('isLoggedIn',true)
+				toast.success(res.data.msg, {
+					position: "bottom-right",
+					autoClose: 5000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: 0,
+				});
+				setTimeout(() => {
+					navigate('/')
+				}, 1000);
+			}
+			else{
+				toast.error(res.data.msg, {
+					position: "bottom-right",
+					autoClose: 5000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: 0,
+				});
+				setTimeout(() => {
+					navigate('/login')
+				}, 2000);
+			}
+		})
+	}
+	return (
+        <div className="row w-100 mx-0">
         <div className="col-lg-4 mx-auto">
           <div className="auth-form-light text-left py-5 px-4 px-sm-5"> 
             <div className="brand-logo">
@@ -80,7 +74,7 @@ export const Login = () => {
               <button type="submit" class="btn btn-primary">Login</button>
               <ToastContainer
                     position="top-right"
-                    autoClose={1800}
+                    autoClose={1500}
                     hideProgressBar={false}
                     newestOnTop={false}
                     closeOnClick
@@ -90,19 +84,12 @@ export const Login = () => {
                     pauseOnHover
                 />
               <div className="my-2 d-flex justify-content-between align-items-center">
-                <div className="form-check">
-                  <label className="form-check-label text-muted">
-                    <input type="checkbox" className="form-check-input" />
-                    Keep me signed in
-                  </label>
-                </div>
+                
                 {/* <a href="#" className="auth-link text-black">Forgot password?</a> */}
-                <Link to="/forgotPassword" className="text-body">Forgot password?</Link>
+                <Link to="/passreset" className="text-body">Forgot password?</Link>
               </div>
               
-              <div className="text-center mt-4 font-weight-light">
-                Don't have an account? <Link to="/adduser" className="text-primary">Create</Link>
-              </div>
+           
             </form>
           </div>
         </div>

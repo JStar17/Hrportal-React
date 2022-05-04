@@ -15,8 +15,6 @@ const App=()=> {
      <Navbar/>
      <Main/>
      
-     
-
      <Routes>
      {/* <Route path='/users' element={<UserDetail/>}/> */}
      </Routes>

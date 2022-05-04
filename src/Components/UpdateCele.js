@@ -90,7 +90,10 @@ const submit = (e) =>{
               <input type="text" className="form-control" name="venue" defaultValue={celebration.venue}  onChange={(e)=>setvenue(e.target.value)} />
             </div>
           </div>
-          <button type="submit" className="button2">Submit</button>
+          <button type="submit" class="btn btn-primary btn-icon-text">
+                          
+                          Submit
+                        </button>
            </form>
       </div>
     </div>

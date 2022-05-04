@@ -266,7 +266,10 @@ const uploadedImage = React.useRef(null);
           </div>
         </div>
         <div>
-  <button className='button2'  type='submit'>Submit</button>
+        <button type="submit" class="btn btn-primary btn-icon-text">
+                          
+                          Submit
+                        </button>
 </div>
       </form>
     </div>
