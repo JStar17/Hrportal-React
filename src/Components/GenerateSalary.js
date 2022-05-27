@@ -75,7 +75,7 @@ useEffect(() => {
           <div className="row">
             
             <div className="col-md-6">
-              <div> <span className="fw-bolder">Ac No.</span> <small className="ms-3">*******0701</small> </div>
+              <div> <span className="fw-bolder">Ac No.</span> <small className="ms-3">{user.accountNo}</small> </div>
             </div>
           </div>
         </div>

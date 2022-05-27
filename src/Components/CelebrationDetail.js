@@ -100,8 +100,8 @@ useEffect(() => {
                           {celebration.venue}
                           </td>
                           <td>
-                                        <Link  to={'/'} onClick={()=>{deleteCelebration(celebration._id)}} className = "btn btn-danger">DELETE</Link>
-                                        <Link  to={`/up/${celebration._id}`}  className  = "btn btn-primary">UPDATE</Link>
+                          {localStorage.getItem('role')=="HR "? <Link to={'/'} onClick={()=>{deleteCelebration(celebration._id)}} className = "btn btn-danger">DELETE</Link>:""}
+                          {localStorage.getItem('role')=="HR "?               <Link  to={`/up/${celebration._id}`}  className  = "btn btn-primary">UPDATE</Link>:""}
                                     </td>
                         </tr>
 

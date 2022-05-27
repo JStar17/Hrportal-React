@@ -1,9 +1,15 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import "react-dropzone-uploader/dist/styles.css";
+import Dropzone from "react-dropzone-uploader";
+import "../Components/AddUser.css";
+
 
 export const AddUser = () => {
+  const userId = useParams().userId;
+  const [user, setuser] = useState("");
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
   const [UserName, setUserName] = useState("");
@@ -12,11 +18,31 @@ export const AddUser = () => {
   const [Gender, setGender] = useState("");
   const [MobileNumber, setMobileNumber] = useState("");
   const [dob, setdateofbirth] = useState("");
-  const [Role, setRole] = useState("");
+  const [Role, setRole] = useState("Employee");
   const [Salary, setSalary] = useState("");
   const [Address, setAddress] = useState("");
   const [Country, setCountry] = useState("");
   const [roleList, setroleList] = useState([]);
+  const [photo, setphoto] = useState("");
+  const [bankName, setbankName] = useState("");
+  const [accountNo, setaccountNo] = useState("");
+  const [ifsc, setifsc] = useState("");
+  const [panno, setpanno] = useState("");
+  const [relativename, setrelativename] = useState("");
+  const [relation, setrelation] = useState("");
+  const [emnumber, setemnumber] = useState("");
+
+  
+
+  const handleChangeStatus = ({ meta, file }, status) => {
+    console.log(status, meta, file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setphoto(reader.result);
+    };
+  };
+  console.log(photo);
 
   const submit = (e) => {
     e.preventDefault();
@@ -36,11 +62,22 @@ export const AddUser = () => {
       salary: Salary,
       country: Country,
       password: Password,
+      profile_pic: photo,
+      bankName: bankName,
+      accountNo: accountNo,
+      ifsc: ifsc,
+      panno: panno,
+      relativename: relativename,
+      relation: relation,
+      emnumber: emnumber,
+    
     };
     axios.post("http://localhost:2000/users", data).then((res) => {
       console.log(res.data);
+      
     });
   };
+  console.log(bankName,accountNo)
   var navigate = useNavigate();
   var auth = localStorage.getItem("email");
   useEffect(() => {
@@ -50,21 +87,7 @@ export const AddUser = () => {
       }
     }
   }, []);
-  const uploadedImage = React.useRef(null);
-  const imageUploader = React.useRef(null);
 
-  const handleImageUpload = (e) => {
-    const [file] = e.target.files;
-    if (file) {
-      const reader = new FileReader();
-      const { current } = uploadedImage;
-      current.file = file;
-      reader.onload = (e) => {
-        current.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  };
   const getroles = () => {
     axios
       .get("http://localhost:2000/roles")
@@ -79,350 +102,375 @@ export const AddUser = () => {
   useEffect(() => {
     getroles();
   }, []);
+  console.log("this is role",roleList)
 
   return (
-    <div class="main-panel">   
-    <div className="content-wrapper">
-      <div className="row">
-        <div class="col-lg-12 stretch-card">
-          <div className="col-12 grid-margin">
-            <div className="card">
-              <div className="card-body">
-                <h4 className="card-title">Add Employee Details</h4>
-                <form className="form-sample" onSubmit={submit}>
-                  <p className="card-description">Employee Details</p>
-
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      // alignItems: "center",
-                      // justifyContent: "center"
-                    }}
-                  >
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      ref={imageUploader}
-                      style={{
-                        display: "none",
-                      }}
-                    />
-                    <div
-                      style={{
-                        height: "120px",
-                        width: "120px",
-                        border: "1px dashed black",
-                      }}
-                      onClick={() => imageUploader.current.click()}
-                    >
+    <div class="main-panel">
+      <div className="content-wrapper">
+        <div className="row">
+          <div class="col-lg-12 stretch-card">
+            <div className="col-12 grid-margin">
+              <div className="card">
+                <div className="card-body">
+                  <h4 className="card-title">Add Employee Details</h4>
+                  <form className="form-sample" onSubmit={submit}>
+                    <p className="card-description">Employee Details</p>
+                    <div className="dropzone-wrapper">
+                      <Dropzone
+                        className="custom-dropzone"
+                        inputContent={<p>Upload Photo</p>}
+                        onChangeStatus={handleChangeStatus}
+                        accept="image/*"
+                      />
                       <img
-                        ref={uploadedImage}
-                        style={{
-                          width: "120px",
-                          height: "120px",
-                          position: "absolute",
-                        }}
+                        className="userimg"
+                        src={user?.profile_pic}
+                        alt=""
+                        srcset=""
                       />
                     </div>
-                  </div>
-                  <div>Click to upload Image</div>
-                  <br></br>
-                  <div className="row">
-                    <div className="col-md-6  ">
-                      <div className="form-group row">
-                        <label className="col-sm-3 col-form-label">
-                          User Name
-                        </label>
-                        <div className="col-sm-9">
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="userName"
-                            onChange={(e) => setUserName(e.target.value)}
-                          />
+                    <div className="row">
+                      <div className="col-md-6  ">
+                        <div className="form-group row">
+                          <label className="col-sm-3 col-form-label">
+                            User Name
+                          </label>
+                          <div className="col-sm-9">
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="userName"
+                              onChange={(e) => setUserName(e.target.value)}
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="col-md-6">
-                      <div className="form-group row">
-                        <label className="col-sm-3 col-form-label">Email</label>
-                        <div className="col-sm-9">
-                          <input
-                            type="email"
-                            className="form-control"
-                            name="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                          />
+                      <div className="col-md-6">
+                        <div className="form-group row">
+                          <label className="col-sm-3 col-form-label">
+                            Email
+                          </label>
+                          <div className="col-sm-9">
+                            <input
+                              type="email"
+                              className="form-control"
+                              name="email"
+                              onChange={(e) => setEmail(e.target.value)}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group row">
-                        <label className="col-sm-3 col-form-label">
-                          Mobile Number
-                        </label>
-                        <div className="col-sm-9">
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="mobileNo"
-                            onChange={(e) => setMobileNumber(e.target.value)}
-                          />
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group row">
+                          <label className="col-sm-3 col-form-label">
+                            Mobile Number
+                          </label>
+                          <div className="col-sm-9">
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="mobileNo"
+                              onChange={(e) => setMobileNumber(e.target.value)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group row">
+                          <label className="col-sm-3 col-form-label">
+                            Password
+                          </label>
+                          <div className="col-sm-9">
+                            <input
+                              type="password"
+                              className="form-control"
+                              name="password"
+                              onChange={(e) => setPassword(e.target.value)}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-6">
-                      <div className="form-group row">
-                        <label className="col-sm-3 col-form-label">
-                          Password
-                        </label>
-                        <div className="col-sm-9">
-                          <input
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                          />
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group row">
+                          <label className="col-sm-3 col-form-label">
+                            First Name
+                          </label>
+                          <div className="col-sm-9">
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="firstName"
+                              onChange={(e) => setFirstName(e.target.value)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group row">
+                          <label className="col-sm-3 col-form-label">
+                            Last Name
+                          </label>
+                          <div className="col-sm-9">
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="lastName"
+                              onChange={(e) => setLastName(e.target.value)}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group row">
-                        <label className="col-sm-3 col-form-label">
-                          First Name
-                        </label>
-                        <div className="col-sm-9">
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="firstName"
-                            onChange={(e) => setFirstName(e.target.value)}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group row">
-                        <label className="col-sm-3 col-form-label">
-                          Last Name
-                        </label>
-                        <div className="col-sm-9">
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="lastName"
-                            onChange={(e) => setLastName(e.target.value)}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group row">
-                        <label
-                          className="col-sm-3 col-form-label"
-                          name="gender"
-                        >
-                          Gender
-                        </label>
-                        <div className="col-sm-9">
-                          <select
-                            className="form-select"
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group row">
+                          <label
+                            className="col-sm-3 col-form-label"
                             name="gender"
-                            onChange={(e) => setGender(e.target.value)}
                           >
-                            <option value="">Select</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                          </select>
+                            Gender
+                          </label>
+                          <div className="col-sm-9">
+                            <select
+                              className="form-select"
+                              name="gender"
+                              onChange={(e) => setGender(e.target.value)}
+                            >
+                              <option value="">Select</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group row">
+                          <label className="col-sm-3 col-form-label" name="dob">
+                            Date of Birth
+                          </label>
+                          <div className="col-sm-9">
+                            <input
+                              type="date"
+                              className="form-control"
+                              name="dob"
+                              onChange={(e) => setdateofbirth(e.target.value)}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-6">
-                      <div className="form-group row">
-                        <label className="col-sm-3 col-form-label" name="dob">
-                          Date of Birth
-                        </label>
-                        <div className="col-sm-9">
-                          <input
-                            type="date"
-                            className="form-control"
-                            name="dob"
-                            onChange={(e) => setdateofbirth(e.target.value)}
-                          />
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group row">
+                          <label className="col-sm-3 col-form-label">
+                            Role
+                          </label>
+                          <div className="col-sm-9">
+                            <select
+                              className="form-select"
+                              name="role"
+                              onChange={(e) => setRole(e.target.value)}
+                            >
+                                <option value="">Select</option>
+                              {roleList.map((role) => {
+                                return  (
+                                  <option value={role._id} key={role._id}>
+                                    {role.roleName}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group row">
+                          <label className="col-sm-3 col-form-label">
+                            Salary
+                          </label>
+                          <div className="col-sm-9">
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="salary"
+                              onChange={(e) => setSalary(e.target.value)}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group row">
-                        <label className="col-sm-3 col-form-label">Role</label>
-                        <div className="col-sm-9">
-                          <select
-                          
-                            className="form-select"
-                            name="role"
-                            onChange={(e) => setRole(e.target.value)}
-                          >
-                            {roleList.map((role) => {
-                              return (
-                                <option value={role._id} key={role._id}>
-                                  {role.roleName}
-                                  
-                                </option>
-                              );
-                            })}
-                          </select>
+
+                    <p className="card-description">Address</p>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group row">
+                          <label className="col-sm-3 col-form-label">
+                            Address{" "}
+                          </label>
+                          <div className="col-sm-9">
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="address"
+                              onChange={(e) => setAddress(e.target.value)}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-6">
-                      <div className="form-group row">
-                        <label className="col-sm-3 col-form-label">
-                          Salary
-                        </label>
-                        <div className="col-sm-9">
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="salary"
-                            onChange={(e) => setSalary(e.target.value)}
-                          />
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group row">
+                          <label className="col-sm-3 col-form-label">
+                            Country
+                          </label>
+                          <div className="col-sm-9">
+                            <select
+                              className="form-select"
+                              name="country"
+                              onChange={(e) => setCountry(e.target.value)}
+                            >
+                              <option value="">Select</option>
+                              <option value="India">India</option>
+                              <option value="Italy">Italy</option>
+                              <option value="Russia">Russia</option>
+                              <option value="Britian">Britain</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                    <br></br>
 
-                  <p className="card-description">Address</p>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group row">
-                        <label className="col-sm-3 col-form-label">
-                          Address{" "}
-                        </label>
-                        <div className="col-sm-9">
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="address"
-                            onChange={(e) => setAddress(e.target.value)}
-                          />
+                    <div className="row">
+                      <div className="col-md-6 grid-margin stretch-card">
+                        <div className="card">
+                          <div className="card-body">
+                            <h4 className="card-title"> Bank Details</h4>
+                            <p className="card-description"></p>
+                            <form className="forms-sample">
+                              <div className="form-group">
+                                <label htmlFor="exampleInputUsername1">
+                                  Bank Name
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="exampleInputUsername1"
+                                  placeholder="Bank Name"
+                                  onChange={(e) => setbankName(e.target.value)}
+                                />
+                              </div>
+                              <div className="form-group">
+                                <label htmlFor="exampleInputEmail1">
+                                  Bank Account Number
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="exampleInputEmail1"
+                                  placeholder="Account Number"
+                                  onChange={(e) => setaccountNo(e.target.value)}
+                                />
+                              </div>
+                              <div className="form-group">
+                                <label htmlFor="exampleInputPassword1">
+                                  ISFC Code
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="exampleInputPassword1"
+                                  placeholder="IFSC Code"
+                                  onChange={(e) => setifsc(e.target.value)}
+                                />
+                              </div>
+                              <div className="form-group">
+                                <label htmlFor="exampleInputConfirmPassword1">
+                                  PAN Number
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="exampleInputConfirmPassword1"
+                                  placeholder="Pan Number"
+                                  onChange={(e) => setpanno(e.target.value)}
+                                />
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6 grid-margin stretch-card">
+                        <div className="card">
+                          <div className="card-body">
+                            <h4 className="card-title">Emergency Contact</h4>
+                            <p className="card-description"></p>
+                            <form className="forms-sample">
+                              <div className="form-group">
+                                <label htmlFor="exampleInputUsername1">
+                                  Person's Name
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="exampleInputUsername1"
+                                  placeholder="Person's Name"
+                                  onChange={(e) => setrelativename(e.target.value)}
+                                />
+                              </div>
+                              <div className="form-group">
+                                <label htmlFor="exampleInputEmail1">
+                                  Relationship
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="exampleInputEmail1"
+                                  placeholder="Relationship"
+                                  onChange={(e) => setrelation(e.target.value)}
+                                />
+                              </div>
+                              <div className="form-group">
+                                <label htmlFor="exampleInputPassword1">
+                                  Contact Number
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="exampleInputPassword1"
+                                  placeholder="Number"
+                                  onChange={(e) => setemnumber(e.target.value)}
+                                />
+                              </div>
+                            </form>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group row">
-                        <label className="col-sm-3 col-form-label">
-                          Country
-                        </label>
-                        <div className="col-sm-9">
-                          <select
-                            className="form-select"
-                            name="country"
-                            onChange={(e) => setCountry(e.target.value)}
-                          >
-                            <option value="">Select</option>
-                            <option value="India">India</option>
-                            <option value="Italy">Italy</option>
-                            <option value="Russia">Russia</option>
-                            <option value="Britian">Britain</option>
-                          </select>
-                        </div>
-                      </div>
+                    <div>
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-icon-text"
+                      >
+                        Submit
+                      </button>
                     </div>
-                  </div>
-                  <br></br>
-
-      <div className="row">
-      <div className="col-md-6 grid-margin stretch-card">
-        <div className="card">
-          <div className="card-body">
-            <h4 className="card-title"> Bank Details</h4>
-            <p className="card-description">
-           
-            </p>
-            <form className="forms-sample">
-              <div className="form-group">
-                <label htmlFor="exampleInputUsername1">Bank Name</label>
-                <input type="text" className="form-control" id="exampleInputUsername1" placeholder="Username" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Bank Account Number</label>
-                <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Email" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">ISFC Code</label>
-                <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputConfirmPassword1">PAN Number</label>
-                <input type="text" className="form-control" id="exampleInputConfirmPassword1" placeholder="Password" />
-              </div>
-
-            </form>
-          </div>
-        </div>
-      </div> 
-      
-  
-
-   
-      <div className="col-md-6 grid-margin stretch-card">
-        <div className="card">
-          <div className="card-body">
-            <h4 className="card-title">Emergency Contact</h4>
-            <p className="card-description">
-           
-            </p>
-            <form className="forms-sample">
-              <div className="form-group">
-                <label htmlFor="exampleInputUsername1">Person's Name</label>
-                <input type="text" className="form-control" id="exampleInputUsername1" placeholder="Username" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Relationship</label>
-                <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Email" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Contact Number</label>
-                <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-              </div>
-           
-
-            </form>
-          </div>
-        </div>
-      </div> 
-      </div>
-  
-  
-    
-   
-
-                  <div>
-                    <button type="submit" class="btn btn-primary btn-icon-text">
-                      Submit
-                    </button>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

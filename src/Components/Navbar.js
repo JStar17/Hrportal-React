@@ -76,7 +76,7 @@ export const Navbar = () => {
           </a>
         </div>
       </li> */}
-      <li className="nav-item nav-profile dropdown">
+      {/* <li className="nav-item nav-profile dropdown">
         <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
           <img src="images/faces/face28.jpg" alt="profile" />
         </a>
@@ -89,12 +89,12 @@ export const Navbar = () => {
            </a>
            
           
-          {/* <a className="dropdown-item">
+          <a className="dropdown-item">
             <i className="ti-power-off text-primary" />
             Logout
-          </a> */}
+          </a>
         </div>
-      </li>
+      </li> */}
       {/* <li className="nav-item nav-settings d-none d-lg-flex">
         <a className="nav-link" href="#">
           <i className="icon-ellipsis" />

@@ -1,0 +1,20 @@
+.dropzone-wrapper .dzu-dropzone{ overflow: hidden!important;
+width:10%;
+max-height: 40px!important;
+    margin: 0px!important;
+    min-height: auto;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+.dropzone-wrapper{
+    display: flex;
+    margin-bottom: 25px;
+    
+
+}
+.userimg{
+    height: 120px;
+    width: 120px;
+    ;
+}

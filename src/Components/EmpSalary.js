@@ -88,7 +88,7 @@ export const EmpSalary = () => {
                           {user.email}
                           </td>
                           <td>
-                          {user.role.roleName}
+                          {user?.role?.roleName}
                           </td>
                           <td>
                           {user.salary}
