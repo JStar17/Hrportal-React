@@ -14,14 +14,14 @@ export const EmploDetails = () => {
   
     }
     var navigate = useNavigate()
-      var auth = localStorage.getItem('email')
-    useEffect(() => {
-      {
-          if (!auth) {
-              navigate('/login')
-          }
-      }
-  }, [])
+  //     var auth = localStorage.getItem('email')
+  //   useEffect(() => {
+  //     {
+  //         if (!auth) {
+  //             navigate('/login')
+  //         }
+  //     }
+  // }, [])
     useEffect(() => {
         getData()
     }, [])

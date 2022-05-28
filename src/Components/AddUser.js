@@ -78,15 +78,15 @@ export const AddUser = () => {
     });
   };
   console.log(bankName,accountNo)
-  var navigate = useNavigate();
-  var auth = localStorage.getItem("email");
-  useEffect(() => {
-    {
-      if (!auth) {
-        navigate("/login");
-      }
-    }
-  }, []);
+  // var navigate = useNavigate();
+  // var auth = localStorage.getItem("email");
+  // useEffect(() => {
+  //   {
+  //     if (!auth) {
+  //       navigate("/login");
+  //     }
+  //   }
+  // }, []);
 
   const getroles = () => {
     axios

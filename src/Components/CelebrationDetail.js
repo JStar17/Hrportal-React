@@ -20,14 +20,14 @@ export const CelebrationDetail = () => {
       getData()
   }, [])
   var navigate = useNavigate()
-  var auth = localStorage.getItem('email')
-useEffect(() => {
-  {
-      if (!auth) {
-          navigate('/login')
-      }
-  }
-}, [])
+//   var auth = localStorage.getItem('email')
+// useEffect(() => {
+//   {
+//       if (!auth) {
+//           navigate('/login')
+//       }
+//   }
+// }, [])
   
   const deleteCelebration = (celebrationId) =>{
     axios.delete(`http://localhost:2000/celebration/${celebrationId}`).then(res=>{
